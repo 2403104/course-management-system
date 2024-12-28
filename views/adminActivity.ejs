@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #00ffff, #ffffff);
+
+            height: 100%;
+            margin: 0;
+           
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-user">
+            <div class="part2">
+                <a href="/adminHome" class="timeTable">Home</a>
+                <a href="/addStudent" class="timeTable">Add Student</a>
+                <a href="/addFaculty" class="timeTable">Add Faculty</a>
+                <a href="/course" class="timeTable">Add Courses</a>
+                <a href="/totalScholarshipSubmitted" class="timeTable">View Applied Scholarship</a>
+            </div>
+            <div class="part3">
+                <div class="loggedUser"><strong><%=name%></strong></div>
+                
+                <button onclick="confirmLogOut()" style="color: white; background-color: transparent; width: 100px; height: 30px; font-size: 21px; border: 1px solid white;">Logout</button>
+            </div>
+        </div>
+        <script>
+            async function confirmLogOut() {
+            const isConfirm = confirm("Are you sure you want to log out?");
+            if (isConfirm) {
+                try {
+                    const response = await fetch('/adminLogout', { method: 'POST' });
+                    const result = await response.json();
+
+                    if (result.success) {
+                        alert(result.message),
+                            window.location.href = result.redirectTo
+                    } else {
+                        alert("Logout failed: " + result.message);
+                    }
+                } catch (error) {
+                    alert("An unexpected error occurred while logging out.");
+                }
+            }
+        }
+        </script>
+    </header>
+</body>
+</html>

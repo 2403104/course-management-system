@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course Form</title>
+</head>
+<body>
+    <%- include('header') %>
+    <div class="addCourse" >
+        <div class="addCourse" ">
+            <form action="/addCourse" method="post"  style=" box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);display: flex; flex-direction: column; gap: 20px; width: 50%; margin: auto; padding-left: 50px; background-color: transparent;">
+                <h2 style="text-align: center;">Add Course Form</h2>
+                
+                <div>
+                    <label for="studentName">Student Name:</label>
+                    <input type="text" id="studentName" name="studentName" placeholder="Enter student's name" required>
+                </div>
+                <div>
+                    <label for="rollNo">Roll Number:</label>
+                    <input type="number" id="rollNo" name="rollNo" placeholder="Enter roll number" required>
+                </div>
+                <div>
+                    <label for="loginId">Login Id:</label>
+                    <input type="number" id="loginId" name="loginId" placeholder="Enter Login Id" required>
+                </div>
+                <div>
+                    <label for="department">Department:</label>
+                    <select id="department" name="department" required>
+                        <option value="">--Select Department--</option>
+                        <option value="CSE">Computer Science and Engineering (CSE)</option>
+                        <option value="EE">Electrical Engineering (EE)</option>
+                        <option value="ME">Mechanical Engineering (ME)</option>
+                        <option value="M$C">Mathematics and Computer Science (M$C)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="semester">Semester:</label>
+                    <select id="semester" name="semester" required>
+                        <option value="">--Select Semester--</option>
+                        <option value="spring">Spring</option>
+                        <option value="autumn">Autumn</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="semesterNumber">Semester Number:</label>
+                    <select id="semesterNumber" name="semesterNumber" required>
+                        <option value="">--Select Semester Number--</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="courseCode">Course Code:</label>
+                    <select id="courseCode" name="courseCode" required>
+                        <option value="">--Select Course Code--</option>
+                        <option value="CS570">CS570</option>
+                        <option value="CS572">CS572</option>
+                        <option value="CS462">CS462</option>
+                        <option value="CS611">CS611</option>
+                        <option value="CS520">CS520</option>
+                        <option value="CS511">CS511</option>
+                        <option value="CS521">CS521</option>
+                        <option value="CS513">CS513</option>
+                        <option value="CS570">CS570</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="offeringDepartment">Department Offering the Course:</label>
+                    <select id="offeringDepartment" name="offeringDepartment" required>
+                        <option value="">--Select Course--</option>
+                        <option value="Model Checking and Software Verification">Model Checking and Software Verification</option>
+                        <option value="Modeling and Simulation of Systems">Modeling and Simulation of Systems</option>
+                        <option value="Markov chains and their Applications">Markov chains and their Applications</option>
+                        <option value="Computational Complexity">Computational Complexity</option>
+                        <option value="Combinatorial Optimization">Combinatorial Optimization</option>
+                        <option value="Approaches to Software Performance Enhancement">Approaches to Software Performance Enhancement</option>
+                        <option value="Foundations of Functional Programming">Foundations of Functional Programming</option>
+                        <option value="Introduction to Information Security">Introduction to Information Security</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="courseType">Course Type:</label>
+                    <select id="courseType" name="courseType" required>
+                        <option value="">--Select Course Type--</option>
+                        <option value="core">Core</option>
+                        <option value="elective">Elective</option>
+                        <option value="openElective">Open Elective</option>
+                        <option value="interdisciplinary">Interdisciplinary</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="reason" style="font-weight: bold;">Reason:</label>
+                    <textarea 
+                        id="reason" 
+                        name="reason" 
+                        placeholder="Enter Reason" 
+                        required 
+                        style="width: 92%; height: 50px; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; resize: vertical;"
+                    ></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn" onclick="formSubmitted()" style="background-color: #4CAF50; width: 95%;">
+                    Add Course
+                </button>
+            </form>
+            
+             
+
+        </div>
+    </div>
+    <script>
+        function formSubmitted(){
+            alert('Form Submitted');
+            
+        }
+    </script>
+</body>
+</html>

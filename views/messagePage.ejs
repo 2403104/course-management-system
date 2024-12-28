@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f4f4f9;
+        }
+
+       
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .ok {
+            width: 150px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .back {
+            width: 150px;
+            background-color: #f44336;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1 style="font-size: 50px;color: rgb(23, 195, 23);"><%=message%></h1>
+
+    <div style="display: flex; gap: 20px;">
+        <button class="back" onclick="handleBack()">Go Back</button>
+        <button class="ok" onclick="handleOK()">Ok</button>
+    </div>
+
+    <script>
+        function handleOK() {
+            window.location.href="<%=newLocation%>"
+        }
+
+        function handleBack() {
+            history.back();  
+            
+        }
+    </script>
+
+</body>
+</html>

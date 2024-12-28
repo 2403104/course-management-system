@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #00ffff, #ffffff);
+
+            height: 100%;
+            margin: 0;
+           
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-user">
+            <div class="part2">
+                <a href="/facultyHome" class="timeTable">Home</a>
+                <a href="/updateGrades" class="timeTable">Update Grades</a>
+                <a href="/reviewCourseRegistered" class="timeTable">Approve Course</a>
+                <a href="/approveCourseAdd" class="timeTable">Approve Course Add</a>
+                <a href="/approveCourseDrop" class="timeTable">Approve Course Drop</a>
+                <a href="/seeFeedback" class="timeTable"> Feedback</a>
+
+
+            </div>
+            <div class="part3">
+                <div class="loggedUser"><strong><%= name%></strong></div>
+                
+                <button onclick="confirmLogOut()" style="color: white; background-color: transparent; width: 100px; height: 30px; font-size: 21px; border: 1px solid white;">Logout</button>
+            </div>
+        </div>
+        <script>
+            const dropdown1 = document.getElementById("options1");
+            const dropdown2 = document.getElementById("options2");
+            const dropdown3 = document.getElementById("options3");
+            const dropdown4 = document.getElementById("options4");
+            dropdown1.addEventListener("change", () => {
+                const selectedValue = dropdown1.value;
+                if (selectedValue) {
+                    window.location.href = selectedValue;
+                }
+            });
+            dropdown2.addEventListener("change", () => {
+                const selectedValue = dropdown2.value;
+                if (selectedValue) {
+                    window.location.href = selectedValue;
+                }
+            });
+            dropdown3.addEventListener("change", () => {
+                const selectedValue = dropdown3.value;
+                if (selectedValue) {
+                    window.location.href = selectedValue;
+                }
+            });
+            dropdown4.addEventListener("change", () => {
+                const selectedValue = dropdown4.value;
+                if (selectedValue) {
+                    window.location.href = selectedValue;
+                }
+            });
+
+            async function confirmLogOut() {
+            const isConfirm = confirm("Are you sure you want to log out?");
+            if (isConfirm) {
+                try {
+                    const response = await fetch('/Facultylogout', { method: 'POST' });
+                    const result = await response.json();
+
+                    if (result.success) {
+                        alert(result.message),
+                            window.location.href = result.redirectTo
+                    } else {
+                        alert("Logout failed: " + result.message);
+                    }
+                } catch (error) {
+                    alert("An unexpected error occurred while logging out.");
+                }
+            }
+        }
+        </script>
+    </header>
+</body>
+</html>

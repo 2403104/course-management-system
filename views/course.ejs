@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        body{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <%- include('adminActivity') %>
+    <div class="main-container-course">
+        <div style="color: black; font-size: 50px; margin-left: 30%;">Add Courses</div>
+        
+        <select id="course-count" onchange="generateInputFields()">
+            <option value="0">Select no. of courses</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+        </select>
+
+         <select id="semester" style="display: none;">
+            <option value="0">Select semester</option>
+            <option value="1">Semester-1</option>
+            <option value="2">Semester-2</option>
+            <option value="3">Semester-3</option>
+            <option value="4">Semester-4</option>
+            <option value="5">Semester-5</option>
+            <option value="6">Semester-6</option>
+            <option value="7">Semester-7</option>
+            <option value="8">Semester-8</option>
+        </select>
+
+        <form id="course-inputs" method="post" action="/course">
+        </form>
+    </div>
+
+    <script>
+         function generateInputFields() {
+            const numCourses = document.getElementById('course-count').value;
+            const container = document.getElementById('course-inputs');
+            container.innerHTML = ''; // Clear previous inputs
+
+             const semester = document.getElementById('semester');
+            if (numCourses > 0) {
+                semester.style.display = 'block';
+            } else {
+                semester.style.display = 'none';
+            }
+
+            for (let i = 1; i <= numCourses; i++) {
+                 const input1 = createInputField(`courses[${i}].courseName`, `Course name`);
+                const input2 = createInputField(`courses[${i}].courseCode`, `Course Code`);
+                const input3 = createInputField(`courses[${i}].credits`, `No of credits`, 'number');
+                const input4 = createInputField(`courses[${i}].facultyAdvisors`, `Faculty Advisors`);
+                const input5 = createInputField(`courses[${i}].status`, `Pending`, 'text', true);
+                const input6 = createInputField(`courses[${i}].courseType`, `Core/Elective`);
+
+                const h1 = document.createElement('h');
+                h1.innerText = `${i}.   `;
+                h1.style.color = 'black';
+                h1.style.marginTop = '10px';
+                h1.style.fontSize = "20px";
+
+                 container.appendChild(h1);
+                container.appendChild(input6);
+                container.appendChild(input1);
+                container.appendChild(input2);
+                container.appendChild(input3);
+                container.appendChild(input4);
+                container.appendChild(input5);
+
+                container.appendChild(document.createElement('br'));
+                container.appendChild(document.createElement('br'));
+            }
+
+             const button = document.createElement('button');
+            button.type = "submit";
+            button.innerText = "Submit";
+            button.style.width = "100%";
+            button.style.fontSize = "30px";
+            button.style.height = "50px";
+            button.style.border = "none";
+            button.style.marginBottom = '50px';
+            button.style.backgroundColor = 'blue';
+            container.appendChild(button);
+        }
+
+         function createInputField(name, placeholder, type = 'text', readonly = false) {
+            const input = document.createElement('input');
+            input.type = type;
+            input.name = name;
+            input.placeholder = placeholder;
+            input.style.margin = '10px';
+            input.style.padding = '5px';
+            input.style.width = '130px';
+            input.style.fontSize = '14px';
+            if (readonly) {
+                input.value = "Pending";
+                input.readOnly = true;
+            }
+            return input;
+        }
+
+         document.querySelector("form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const semester = document.getElementById('semester').value;
+            const courseCount = document.getElementById('course-count').value;
+            if (semester === "0") {
+                alert('Please select a valid semester');
+                return;
+            }
+            const courses = [];
+
+            for (let i = 1; i <= courseCount; i++) {
+                const course = {
+                    courseType: document.querySelector(`[name="courses[${i}].courseType"]`).value,
+                    courseName: document.querySelector(`[name="courses[${i}].courseName"]`).value,
+                    courseCode: document.querySelector(`[name="courses[${i}].courseCode"]`).value,
+                    credits: document.querySelector(`[name="courses[${i}].credits"]`).value,
+                    facultyAdvisors: document.querySelector(`[name="courses[${i}].facultyAdvisors"]`).value
+                };
+                courses.push(course);
+            }
+
+            fetch('/course', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ semester, courses })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Courses added successfully!');
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drop Course Form</title>
+</head>
+<body>
+    <%- include('header') %>
+    <div class="dropCourse" >
+        <form action="/dropCourse" method="post" style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); display: flex; flex-direction: column; gap: 20px; width: 50%; margin: auto; padding-left: 50px; background-color: transparent;">
+            <h2 style="text-align: center;">Drop Course Form</h2>
+                
+            <div>
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" name="studentName" placeholder="Enter student's name" required>
+            </div>
+            <div>
+                <label for="rollNo">Roll Number:</label>
+                <input type="number" id="rollNo" name="rollNo" placeholder="Enter roll number" required>
+            </div>
+            <div>
+                <label for="loginId">Login Id:</label>
+                <input type="number" id="loginId" name="loginId" placeholder="Enter Login Id" required>
+            </div>
+            <div>
+                <label for="department">Department:</label>
+                <select id="department" name="department" required>
+                    <option value="">--Select Department--</option>
+                    <option value="CSE">Computer Science and Engineering (CSE)</option>
+                    <option value="EE">Electrical Engineering (EE)</option>
+                    <option value="ME">Mechanical Engineering (ME)</option>
+                    <option value="M$C">Mathematics and Computer Science (M$C)</option>
+                </select>
+            </div>
+            <div>
+                <label for="semester">Semester:</label>
+                <select id="semester" name="semester" required>
+                    <option value="">--Select Semester--</option>
+                    <option value="spring">Spring</option>
+                    <option value="autumn">Autumn</option>
+                </select>
+            </div>
+            <div>
+                <label for="semesterNumber">Semester Number:</label>
+                <select id="semesterNumber" name="semesterNumber" required>
+                    <option value="">--Select Semester Number--</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                </select>
+            </div>
+            <div>
+                <label for="courseCode">Course Code To Delete:</label>
+                <select id="courseCode" name="courseCode" required>
+                    <option value="">--Select Course Code--</option>
+                    <option value="MA101">MA101</option>
+                    <option value="CS101">CS101</option>
+                    <option value="NO101">NO101</option>
+                    <option value="CH102">CH102</option>
+                    <option value="PH101">PH101</option>
+                    <option value="HS102">HS102</option>
+                </select>
+            </div>
+            <div>
+                <label for="offeringDepartment">Department Offering the Course:</label>
+                <select id="offeringDepartment" name="offeringDepartment" required>
+                    <option value="">--Select Course--</option>
+                    <option value="INTRODUCTION TO CALCULUS">INTRODUCTION TO CALCULUS</option>
+                    <option value="INTRODUCTION TO COMPUTING">INTRODUCTION TO COMPUTING</option>
+                    <option value="SPORTS">SPORTS</option>
+                    <option value="ORGANIC AND INORGANIC CHEMISTRY">ORGANIC AND INORGANIC CHEMISTRY</option>
+                    <option value="QUANTUM PHYSICS">QUANTUM PHYSICS</option>
+                    <option value="HUMANITY AND SOCIAL STUDIES">HUMANITY AND SOCIAL STUDIES</option>
+                    
+                </select>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="reason" style="font-weight: bold;">Reason:</label>
+                <textarea 
+                    id="reason" 
+                    name="reason" 
+                    placeholder="Enter Reason" 
+                    required 
+                    style="width: 92%; height: 50px; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; resize: vertical;"
+                ></textarea>
+            </div>
+            <button type="submit" onclick="formSubmitted()" class="submit-btn" style="background-color: #4CAF50; width: 95%;">
+                Drop Course
+            </button>
+        </form>
+    </div>
+    <script>
+        function formSubmitted(){
+            alert("Form Submitted!")
+        }
+    </script>
+</body>
+</html>

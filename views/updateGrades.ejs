@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Grades Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(to right, aqua, white);
+        }
+        .container {
+            max-width: 800px;
+            margin-left: 250px;
+            margin-bottom: 100px;
+            padding: 20px;
+            background-color: #b5f1f1;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #1565C0;
+        }
+        .header .name {
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .course-list {
+            margin-bottom: 20px;
+        }
+        .course {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .course input[type="text"] {
+            width: 80px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .submit-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .submit-button button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .submit-button button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <%-include('facultyActivity')%>
+    <h2 style="text-align: center; font-size: 50px;">Update Grades</h2>
+    <% students.forEach((student)=>{%>
+        <div class="container" >
+            <div class="header">
+                <div class="name"><%=student.name %></div>
+                <div class="login-id">Login ID: <%=student.loginId%> </div>
+            </div>
+    
+            <div class="course-list">
+                <% student.courses.forEach(function(course) { %>
+                <div class="course">
+                    <div class="course-code"><%= course.courseCode %></div>
+                    <input 
+                    style="text-align: center;"
+                    type="text" 
+                    id="grade-<%= course.courseCode %>" 
+                    placeholder="Grade"
+                    value="<%= course.grade || '' %>"
+                    <%= course.grade ? 'readonly' : '' %> 
+                >                </div>
+                <% }); %>
+            </div>
+    
+            <div class="submit-button">
+                <button onclick="submitGrades('<%= student.loginId %>')">Submit</button>
+            </div>
+        </div>
+        <%})%>
+
+    <script>
+        async function submitGrades(loginId) {
+            const grades = {};
+
+            document.querySelectorAll('.course').forEach(course => {
+                const courseCode = course.querySelector('.course-code').textContent;
+                const gradeInput = course.querySelector('input');
+                grades[courseCode] = gradeInput.value;
+            });
+            
+
+            try {
+                const response = await fetch('/update-grades', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ loginId, grades })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Grades updated successfully!');
+                    location.reload();
+                } else {
+                    alert('Failed to update grades.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('An error occurred. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>

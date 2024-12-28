@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles.css">
+    <title>Student Activity Dashboard</title>
+    <style>
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: to bottom,aqua, white;
+    margin: 0;
+}
+
+header {
+    background-color: transparent;
+    color: black;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+
+main {
+    background-color: transparent;
+}
+h2 {
+    font-size: 2rem;
+    
+}
+
+.stats-box {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.stat {
+    background-color: transparent;
+    
+    width: 30%;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.stat h3 {
+    margin-bottom: 10px;
+}
+
+.skill-box, .achievements-box {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.skill, .achievement {
+    background-color: #eef2f4;
+    padding: 20px;
+    width: 30%;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.skill h3, .achievement h3 {
+    font-size: 1.2rem;
+}
+
+ul {
+    list-style: none;
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    .stat, .skill, .achievement {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <%-include('header')%>
+    <header>
+        <h2 style="font-size: 40px;" >Student Activity Dashboard</h2>
+    </header>
+
+    <main>
+
+        <section id="skills">
+            <h2>Skill Enhancement & Development</h2>
+            <div class="skill-box">
+                <div class="skill">
+                    <h3>Completed Courses</h3>
+                    <ul>
+                        <li>Introduction to Python</li>
+                        <li>Machine Learning Basics</li>
+                    </ul>
+                </div>
+                <div class="skill">
+                    <h3>Certification</h3>
+                    <p><strong>Certificate:</strong> Web Development - FreeCodeCamp</p>
+                </div>
+                <div class="skill">
+                    <h3>Upcoming Activities</h3>
+                    <p>Join workshop on Data Analysis, 15th Jan</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <h2>Recent Achievements</h2>
+            <div class="achievements-box">
+                <div class="achievement">
+                    <h3>Hackathon 2023 - 1st Prize</h3>
+                    <p><strong>Event:</strong> National Tech Hackathon</p>
+                    <p><strong>Achievement:</strong> 1st prize for building a mobile app in 24 hours</p>
+                </div>
+                <div class="achievement">
+                    <h3>Research Paper Publication</h3>
+                    <p><strong>Journal:</strong> IEEE Transactions</p>
+                    <p><strong>Details:</strong> Published paper on AI in healthcare</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Application Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: transparent;
+           
+        }
+
+        .container {
+            width: 50%;
+            margin: 30px auto;
+            background:transparent;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .submitScholarship {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        .submitScholarship:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <%-include('header')%>
+    <div class="container">
+        <h2>Scholarship Application Form</h2>
+        <form method="post" enctype="multipart/form-data" autocomplete="on" action="/applyScholarship">
+            <h3>Personal Details</h3>
+            <label for="loginId">Login Id:</label>
+            <input type="number" id="loginId" name="loginId" placeholder="Login Id" required>
+
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+
+            <label for="dateOfBirth">Date of Birth:</label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+            <label for="contactNumber">Contact Number:</label>
+            <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required>
+
+            <label for="address">Residential Address:</label>
+            <textarea id="address" name="address" rows="4" placeholder="Enter your full residential address" required></textarea>
+
+            <label for="fatherName">Father's Name:</label>
+            <input type="text" id="fatheNname" name="fatherName" placeholder="Enter your father's name" required>
+
+            <label for="motherName">Mother's Name:</label>
+            <input type="text" id="motherName" name="motherName" placeholder="Enter your mother's name" required>
+
+            <label for="numberOfSiblings">Number of Siblings:</label>
+            <input type="number" id="numberOfSiblings" name="numberOfSiblings" placeholder="Enter the number of siblings" required>
+
+            <h3>Family Income Details</h3>
+            <label for="totalAnnualIncome">Total Annual Family Income (in INR):</label>
+            <input type="number" id="totalAnnualIncome" name="totalAnnualIncome" placeholder="Enter total annual income" required>
+
+            <label for="primarySourceOfIncome">Primary Source of Income:</label>
+            <textarea id="primarySourceOfIncome" name="primarySourceOfIncome" rows="3" placeholder="Explain your family's primary source of income, e.g., Job, Business, Farming, etc." required></textarea>
+
+            <label for="otherSourceOfIncome">Other Sources of Income (if any):</label>
+            <textarea id="otherSourceOfIncome" name="otherSourceOfIncome" rows="3" placeholder="Mention other sources of income, if applicable" ></textarea>
+
+            <label for="income-proof">Income Proof:</label>
+            <input type="file" id="income-proof" name="income-proof" required>
+
+            
+
+            <button class="submitScholarship" type="submit">Submit Scholarship</button>
+        </form>
+    </div>
+    <script>
+            const form = document.getElementById('registrationForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent form submission
+        
+        freezeForm();
+
+        alert('Form Submitted and Locked!');
+    });
+
+    function freezeForm() {
+        const inputs = form.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.disabled = true;  // Or use input.readOnly = true;
+        });
+        submitBtn.disabled = true;  // Disable submit button
+    }
+    </script>
+</body>
+</html>

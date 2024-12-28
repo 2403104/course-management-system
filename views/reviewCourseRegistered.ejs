@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Course Registered</title>
+    <link rel="stylesheet" href="./css/style.css">
+    
+</head>
+
+<body>
+    <%-include('facultyActivity')%>
+    <div class="main-content-review" style="background-color: transparent; ;">
+        <div class="header-2">
+            <h1>Review Registered Course</h1>
+        </div>
+        <div class="review-list">
+            <% registered.forEach(student=> { %>
+                <div class="review-items" style="box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4); background-color: transparent;">
+                    <div class="review-item">_id : <strong><%= student._id %></strong></div>
+                    <div class="review-item">Name : <strong><%= student.Name %></strong></div>
+                    <div class="review-item">Course : <strong><%= student.Course %></strong></div>
+                    <div class="review-item">Branch : <strong><%= student.Branch %></strong></div>
+                    <div>Status: 
+                        <strong id="status-<%= student._id %>-<%= student.Course %>"> <%= student.Status %></strong>
+                    </div>
+                    <button class="accept-reject" style="background-color: green; color: white;" onclick="updateCourseStatus('<%= student._id %>', '<%= student.Course %>', 'Accepted')">Accept</button>
+                    <button class="accept-reject" style="background-color: red; color: white;" onclick="updateCourseStatus('<%= student._id %>', '<%= student.Course %>', 'Rejected')">Reject</button>
+                </div>
+                <% }) %>
+
+        </div>
+
+    </div>
+    <script>
+        async function updateCourseStatus(_id, courseCode, newStatus) {
+    console.log("Updating course status for:", { _id, courseCode, newStatus }); 
+
+    try {
+        const response = await fetch('/update-course-status', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ _id, courseCode, status: newStatus })
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log("Update response:", result); 
+            document.getElementById(`status-${_id}-${courseCode}`).textContent = newStatus;
+            document.getElementById(`status-${_id}-${courseCode}`).style.color = newStatus === 'Accepted' ? 'green' : 'red';
+        } else {
+            console.error("Failed to update course status. Response:", response.statusText);
+        }
+    } catch (error) {
+        console.error("Error updating course status:", error);
+    }
+}
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Approval</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(to right, aqua, white);
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgb(143, 255, 218);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background-color: transparent;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: aqua;
+            box-shadow:  0 2px 4px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+        .income-proof img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .buttons .accept {
+            background-color: #4CAF50;
+            color: #ffffff;
+        }
+        .buttons .reject {
+            background-color: #F44336;
+            color: #ffffff;
+        }
+        .buttons button:hover {
+            opacity: 0.9;
+        }
+        .no-application-message {
+            text-align: center;
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <%-include('adminActivity')%>
+    <div id="scholarship-list">
+        <h1 style="text-align: center; font-size: 50px;">Applied Scholarship</h1>
+
+        <% if (scholarshipList.length === 0) { %>
+            <div class="container">
+                <div class="section">
+                    <h2 style="text-align: center;">No Scholarship Applied Yet !</h2>
+                </div>
+            </div>
+        <% } else { %>
+            <% scholarshipList.forEach(function(application) { %>
+            <div class="container">
+                <div class="header">Scholarship Application</div>
+                <div class="section" >
+                    <h3>Personal Details</h3>
+                    <p><strong>Login ID:</strong> <%= application.loginId %></p>
+                    <p><strong>Full Name:</strong> <%= application.personalDetails.fullName %></p>
+                    <p><strong>Date of Birth:</strong> <%= application.personalDetails.dateOfBirth %></p>
+                    <p><strong>Gender:</strong> <%= application.personalDetails.gender %></p>
+                    <p><strong>Email:</strong> <%= application.personalDetails.email %></p>
+                    <p><strong>Contact Number:</strong> <%= application.personalDetails.contactNumber %></p>
+                    <p><strong>Address:</strong> <%= application.personalDetails.address %></p>
+                </div>
+                <div class="section">
+                    <h3>Family Details</h3>
+                    <p><strong>Father's Name:</strong> <%= application.familyDetails.fatherName %></p>
+                    <p><strong>Mother's Name:</strong> <%= application.familyDetails.motherName %></p>
+                    <p><strong>Number of Siblings:</strong> <%= application.familyDetails.numberOfSiblings %></p>
+                </div>
+                <div class="section">
+                    <h3>Income Details</h3>
+                    <p><strong>Total Annual Income:</strong> <%= application.incomeDetails.totalAnnualIncome %></p>
+                    <p><strong>Primary Source of Income:</strong> <%= application.incomeDetails.primarySourceOfIncome %></p>
+                    <p><strong>Other Sources of Income:</strong> <%= application.incomeDetails.otherSourcesOfIncome %></p>
+                </div>
+                <div class="section income-proof">
+                    <p><strong>Income Proof:</strong></p>
+                    <img src="./scholarshipUploads/<%= application.incomeDetails.incomeProof %>"  alt="Income Proof">
+                </div>
+                <div class="section">
+                    <p id="status-<%=application.loginId%>"><strong>Status:</strong> <%= application.status %></p>
+                </div>
+                <div class="form-group">
+                    <label for="remarks-<%= application.loginId %>">Remarks:</label>
+                    <textarea style="background-color: aqua;" id="remarks-<%= application.loginId %>" name="remarks" placeholder="Enter your remarks here..."><%= application.remark %></textarea>
+                </div>
+                <div class="buttons">
+                    <button class="accept" onclick="handleApproval('<%= application.loginId %>', 'Accepted')">Accept</button>
+                    <button class="reject" onclick="handleApproval('<%= application.loginId %>', 'Rejected')">Reject</button>
+                </div>
+            </div>
+            <% }); %>
+        <% } %>
+    </div>
+    
+    <script>
+        async function handleApproval(loginId, status) {
+            const remarks = document.getElementById(`remarks-${loginId}`).value;
+            // const status = document.getElementById(`status-${loginId}`).value;
+    
+            try {
+                const response = await fetch('/update-scholarship-status', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ loginId, status, remarks })
+                });
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+    
+                const data = await response.json();
+                if (data.success) {
+                    alert('Status updated successfully!');
+                    location.reload();
+                } else {
+                    throw new Error(data.message || 'Unknown error occurred.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while updating the status. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>

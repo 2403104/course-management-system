@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Faculty Feedback Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h2 {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        .form-content {
+            margin-bottom: 10px;
+        }
+
+        .form-content label {
+            width: 100%;
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-content input,
+        .form-content select,
+        .form-content textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-content textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .dropdown-response {
+            margin-top: 10px;
+        }
+
+        select {
+            width: auto;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <%-include('header')%>
+    <div class="container" style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: transparent;">
+        <h1 class="form-title" style="font-size: 40px;"> Course Feedback Form</h1>
+
+        <form action="/submitFeedback" method="post">
+            <div class="form-section">
+                <div class="form-content">
+                    <label for="course">Select Course:</label>
+                    <select id="course" name="course" required>
+                        <option value="">Select a Course</option>
+                    </select>
+                </div>
+                <div class="form-content">
+                    <label for="faculty">Select Faculty:</label>
+                    <select id="faculty" name="faculty" required>
+                        <option value="">Select a Faculty</option>
+
+                    </select>
+                </div>
+                <div class="form-content">
+                    <label>How clearly was the course plan presented?</label>
+                    <select name="coursePlanPresentation" class="dropdown-response" required>
+                        <option value="">Select</option>
+                        <option value="Poor">Poor</option>
+                        <option value="Average">Average</option>
+                        <option value="Good">Good</option>
+                        <option value="Very Good">Very Good</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="No Opinion">No Opinion</option>
+                    </select>
+                </div>
+                <div class="form-content">
+                    <label>Did the course content meet course objectives adequately?</label>
+                    <select name="courseObjectives" class="dropdown-response" required>
+                        <option value="">Select</option>
+                        <option value="Poor">Poor</option>
+                        <option value="Average">Average</option>
+                        <option value="Good">Good</option>
+                        <option value="Very Good">Very Good</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="No Opinion">No Opinion</option>
+                    </select>
+                </div>
+                <div class="form-content">
+                    <label>How were the lectures organized in terms of clarity and presentation of concepts?</label>
+                    <select name="lectureClarity" class="dropdown-response" required>
+                        <option value="">Select</option>
+                        <option value="Poor">Poor</option>
+                        <option value="Average">Average</option>
+                        <option value="Good">Good</option>
+                        <option value="Very Good">Very Good</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="No Opinion">No Opinion</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-content">
+                    <label>How much did the course help you learn the subject?</label>
+                    <select name="learningEffectiveness" class="dropdown-response" required>
+                        <option value="">Select</option>
+                        <option value="Poor">Poor</option>
+                        <option value="Average">Average</option>
+                        <option value="Good">Good</option>
+                        <option value="Very Good">Very Good</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="No Opinion">No Opinion</option>
+                    </select>
+                </div>
+                <!-- Add more questions for the learning section -->
+            </div>
+
+            <!-- General Questions -->
+            <div class="form-section">
+                <div class="form-content">
+                    <label>How would you rate the workload of this course?</label>
+                    <select name="workloadRating" class="dropdown-response" required>
+                        <option value="">Select</option>
+                        <option value="Just Right">Just Right</option>
+                        <option value="Too Light">Too Light</option>
+                        <option value="Too Heavy">Too Heavy</option>
+                        <option value="No Opinion">No Opinion</option>
+                    </select>
+                </div>
+                <!-- Add more general questions -->
+            </div>
+
+            <!-- Subjective Questions -->
+            <div class="form-section">
+                <div class="form-content">
+                    <label>What did you like the most about this course?</label>
+                    <textarea name="likeMostCourse"></textarea>
+                </div>
+                <div class="form-content">
+                    <label>What did you like the most about this course tutorial?</label>
+                    <textarea name="likeMosttutorial"></textarea>
+                </div>
+                <div class="form-content">
+                    <label>What did you dislike the most about this course?</label>
+                    <textarea name="dislikeMostCourse"></textarea>
+                </div>
+                <div class="form-content">
+                    <label>What did you dislike the most about this course?</label>
+                    <textarea name="dislikeMosttutorial"></textarea>
+                </div>
+                <!-- Add more subjective questions -->
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" style="height: 50px;" class="submit-btn">Submit Feedback</button>
+        </form>
+    </div>
+    <script>
+        const courseList = <%-courseList%>;
+        const facultyList = <%-facultylist%>; 
+        
+        // Populate the Course dropdown
+        const courseDropdown = document.getElementById('course');
+        courseList.forEach(course => {
+            let option = document.createElement('option');
+            option.value = course;
+            option.textContent = course;
+            courseDropdown.appendChild(option);
+        });
+
+        // Populate the Faculty dropdown
+        const facultyDropdown = document.getElementById('faculty');
+        facultyList.forEach(faculty => {
+            let option = document.createElement('option');
+            option.value = faculty;
+            option.textContent = faculty;
+            facultyDropdown.appendChild(option);
+        });
+    </script>
+</body>
+</html>

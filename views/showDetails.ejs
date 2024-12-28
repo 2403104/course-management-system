@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, aqua, white);
+        }
+
+        .container {
+            margin: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .box {
+            background-color: aqua;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        .box b {
+            font-size: 16px;
+        }
+
+        .image {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+        }
+
+        .details-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .details-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .details-box h3 {
+            margin-bottom: 10px;
+        }
+
+        .personal-details,
+        .address-details,
+        .course-details {
+            width: 300px;
+        }
+
+        .personal-details .box,
+        .address-details .box,
+        .course-details .box {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <%-include('header')%>
+
+    <h1>User Details</h1>
+
+    <% if (user) { %>
+        <img class="image" src="./uploads/<%= user.profilePic %> " style="width: 220px; height: 220px; right: 22px; top: 200px;" alt="Profile Picture">
+        
+        <div class="container">
+            <div class="box">
+                <b style="font-size: 30px;">
+                    <%= user.name %>
+                </b>
+            </div>
+            <div class="box">
+                <b style="font-size: 30px;">
+                    <%= user.branch %>
+                </b>
+            </div>
+
+            <div style="display: flex;">
+                <div class="box">
+                    <b>Login ID:</b>
+                    <%= user.loginId %>
+                </div>
+
+                <div class="box">
+                    <b>Email:</b>
+                    <%= user.email %>
+                </div>
+                <div class="box">
+                    <b>Roll No:</b>
+                    <%= user.rollNo %>
+                </div>
+            </div>
+        </div>
+
+        <div class="details-section">
+            <div style="display: flex; align-items: center; margin: auto;">
+                <div class="details-box personal-details">
+                    <h3>Personal Details</h3>
+                    <div class="box">
+                        <b>Student Name:</b>
+                        <%= user.personalDetails.studentName %><br>
+                        <b>Father's Name:</b>
+                        <%= user.personalDetails.fatherName %><br>
+                        <b>Mother Tongue:</b>
+                        <%= user.personalDetails.motherTongue %><br>
+                        <b>Blood Group:</b>
+                        <%= user.personalDetails.bloodGroup %><br>
+                        <b>Nationality:</b>
+                        <%= user.personalDetails.nationality %><br>
+                        <b>Religion:</b>
+                        <%= user.personalDetails.religion %><br>
+                    </div>
+                </div>
+
+                <div class="details-box address-details">
+                    <h3>Address Details</h3>
+                    <div class="box">
+                        <b>Address Type:</b>
+                        <%= user.addressDetails.addressType %><br>
+                        <b>Country:</b>
+                        <%= user.addressDetails.country %><br>
+                        <b>State:</b>
+                        <%= user.addressDetails.state %><br>
+                        <b>Zip Code:</b>
+                        <%= user.addressDetails.zipCode %><br>
+                        <b>Address:</b>
+                        <%= user.addressDetails.address %><br>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <h1>Course Details</h1>
+        <div class="details-box course-details" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-left: 18%; ">
+            <% user.courses.forEach(function(course) { %>
+                <div class="box">
+                    <b>Course Name:</b>
+                    <%= course.courseName %><br>
+                    <b>Course Code:</b>
+                    <%= course.courseCode %><br>
+                    <b>Credits:</b>
+                    <%= course.credits %><br>
+                    <b>Faculty Advisors:</b>
+                    <%= course.facultyAdvisors %><br>
+                    <b>Status:</b>
+                    <%= course.status %>
+                </div>
+            <% }) %>
+        </div>
+
+    <% } else { %>
+        <div class="container">
+            <div class="box">
+                <p>No user details are available or edit not applied yet.</p>
+            </div>
+        </div>
+    <% } %>
+
+</body>
+
+</html>

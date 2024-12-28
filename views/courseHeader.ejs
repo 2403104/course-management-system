@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration History</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="main-content-register">
+        <div class="heading">
+            <h2>Course Title</h2>
+            <h2>Course Code</h2>
+            <h2>Credits</h2>
+            <h2>Faculty Advisors</h2>
+            <h2>Status</h2>
+        </div>
+        <div class="items">
+            <% courseDetails.forEach(course => { %>
+                    <div class="course-item">
+                        <div class="item1">
+                            <h3 style="color: black">
+                                <%= course.courseName %>
+                            </h3>
+                        </div>
+                        <div class="item2">
+                            <h3 style="color: black">
+                                <%= course.courseCode %>
+                            </h3>
+                        </div>
+                        <div class="item3">
+                            <h3 style="color: black">
+                                <%= course.credits %>
+                            </h3>
+                        </div>
+                        <div class="item4">
+                            <h3 style="color: black">
+                                <%= course.facultyAdvisors %>
+                            </h3>
+                        </div>
+                        <div class="item5">
+                            <h3 style="color: black;">
+                                <%= course.status %>
+                            </h3>
+                        </div>
+                    </div>
+
+            <% }) %>
+            
+        </div>
+    </div>
+</body>
+
+</html>
