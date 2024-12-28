@@ -479,7 +479,7 @@ app.post('/addCourse', async (req, res) => {
             studentName, rollNo, loginId, department, semester, semesterNumber, courseCode, offeringDepartment, courseType, reason
         }
         const addedCourse = await AddDropCourse.create(courseToAdd);
-        return res.render("messagePage",{message:"Course Added Successfully !",newLocation:"/adminActivity"})
+        return res.render("messagePage",{message:"Course Added Successfully !",newLocation:"/studentActivity"})
 
     } catch (err) {
         console.log(err)
