@@ -302,6 +302,7 @@ app.get('/viewAppliedScholarship', async (req, res) => {
 })
 app.get('/registerCourse', async (req, res) => {
     try {
+        const user=await User.findOne({loginId:req.session.user.loginId});
         const course = await Course.findOne({ semester: req.session.user.semester });
         const courseDetails = course.courses;
         const electiveCourses = [];
@@ -315,7 +316,7 @@ app.get('/registerCourse', async (req, res) => {
             }
         }
 
-        return res.render("registerCourse", { name: req.session.user.name, coreCourses, electiveCourses: JSON.stringify(electiveCourses) });
+        return res.render("registerCourse", { name: req.session.user.name,branch:user.branch,image:user.profilePic, coreCourses, electiveCourses: JSON.stringify(electiveCourses) });
     } catch (err) {
         console.log(err)
         return res.render("studentLogin")
