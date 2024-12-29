@@ -101,10 +101,10 @@
     </div>
 
     <script>
-        const feedbackData = "<%-thisCourseFeedback %>";
+        const feedbackData = <%-thisCourseFeedback %>;
 
-        document.getElementById('courseName').textContent = "<%-course%>";
-        document.getElementById('facultyName').textContent = "<%-facultyName%>";
+        document.getElementById('courseName').textContent = <%-course%>;
+        document.getElementById('facultyName').textContent = <%-facultyName%>;
 
         function displayFeedback(feedback) {
             const tableBody = document.querySelector("#feedbackTable tbody");
