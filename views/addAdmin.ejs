@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Admin</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        body{
+            background-color: aqua;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container-1">
+        <h1 class="h-1">Add Admin</h1>
+        <div class="form-container">
+            <form action="/addAdmin" method="post" id="admin-form">
+                <div class="form-content">
+                    <label for="adminId">Admin ID</label>
+                    <input type="text" id="adminId" class="input-container" name="adminId" placeholder="Admin ID" required />
+                </div>
+                <div class="form-content">
+                    <label for="adminName">Admin Name</label>
+                    <input type="text" id="adminName" class="input-container" name="adminName" placeholder="Admin Name" required />
+                </div>
+                <div class="form-content">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="input-container" name="email" placeholder="Email" required />
+                </div>
+                <div class="form-content">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="input-container" name="password" placeholder="Password" required />
+                </div>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

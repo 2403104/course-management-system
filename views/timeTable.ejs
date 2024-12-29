@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(to right, #f0f0f0, #ffffff);
+        }
+
+        h1 {
+            margin: 20px 0;
+            color: #1565C0;
+        }
+
+        .timetable-container {
+            margin: 20px auto;
+            overflow-x: auto;
+            border-collapse: collapse;
+            width: 90%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-size: 16px;
+        }
+
+        .day-column {
+            background-color: #f9f9f9;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 4px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            pointer-events: none;
+            background: #e9e9e9;
+
+        }
+
+        input[type="text"].editable {
+            pointer-events: auto;
+            background: #fff;
+
+        }
+
+        #edit-btn {
+            padding: 10px 20px;
+            margin: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #submit-btn {
+            padding: 10px 20px;
+            margin: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <%-include('adminActivity')%>
+    <h1>Editable Timetable</h1>
+    <div class="timetable-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="day-column">Day/Time</th>
+                    <th class="time-header">9:00 - 9:45</th>
+                    <th class="time-header">10:00 - 10:45</th>
+                    <th class="time-header">11:00 - 11:45</th>
+                    <th class="time-header">1:00 - 1:45</th>
+                    <th class="time-header">2:00 - 2:45</th>
+                    <th class="time-header">3:00 - 3:45</th>
+                    <th class="time-header">4:00 - 4:45</th>
+                    <th class="time-header">5:00 - 5:45</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-day="Monday">
+                    <td class="day-column">Monday</td>
+                    <td><input type="text" name="slot1"></td>
+                    <td><input type="text" name="slot2"></td>
+                    <td><input type="text" name="slot3"></td>
+                    <td><input type="text" name="slot4"></td>
+                    <td><input type="text" name="slot5"></td>
+                    <td><input type="text" name="slot6"></td>
+                    <td><input type="text" name="slot7"></td>
+                    <td><input type="text" name="slot8"></td>
+                </tr>
+                <tr data-day="Tuesday">
+                    <td class="day-column">Tuesday</td>
+                    <td><input type="text" name="slot1"></td>
+                    <td><input type="text" name="slot2"></td>
+                    <td><input type="text" name="slot3"></td>
+                    <td><input type="text" name="slot4"></td>
+                    <td><input type="text" name="slot5"></td>
+                    <td><input type="text" name="slot6"></td>
+                    <td><input type="text" name="slot7"></td>
+                    <td><input type="text" name="slot8"></td>
+                </tr>
+                <tr data-day="Wednesday">
+                    <td class="day-column">Wednesday</td>
+                    <td><input type="text" name="slot1"></td>
+                    <td><input type="text" name="slot2"></td>
+                    <td><input type="text" name="slot3"></td>
+                    <td><input type="text" name="slot4"></td>
+                    <td><input type="text" name="slot5"></td>
+                    <td><input type="text" name="slot6"></td>
+                    <td><input type="text" name="slot7"></td>
+                    <td><input type="text" name="slot8"></td>
+                </tr>
+                <tr data-day="Thursday">
+                    <td class="day-column">Thursday</td>
+                    <td><input type="text" name="slot1"></td>
+                    <td><input type="text" name="slot2"></td>
+                    <td><input type="text" name="slot3"></td>
+                    <td><input type="text" name="slot4"></td>
+                    <td><input type="text" name="slot5"></td>
+                    <td><input type="text" name="slot6"></td>
+                    <td><input type="text" name="slot7"></td>
+                    <td><input type="text" name="slot8"></td>
+                </tr>
+                <tr data-day="Friday">
+                    <td class="day-column">Friday</td>
+                    <td><input type="text" name="slot1"></td>
+                    <td><input type="text" name="slot2"></td>
+                    <td><input type="text" name="slot3"></td>
+                    <td><input type="text" name="slot4"></td>
+                    <td><input type="text" name="slot5"></td>
+                    <td><input type="text" name="slot6"></td>
+                    <td><input type="text" name="slot7"></td>
+                    <td><input type="text" name="slot8"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <button id="edit-btn" onclick="enableEdit()">Edit</button>
+            <button id="submit-btn" onclick="submitTimetable()">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        function enableEdit() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            inputs.forEach(input => input.classList.add('editable'));
+            alert('Editing enabled !');
+        }
+
+        async function submitTimetable() {
+            const rows = document.querySelectorAll('tbody tr');
+            const timetable = [];
+
+            rows.forEach(row => {
+                const day = row.getAttribute('data-day');
+                const slots = Array.from(row.querySelectorAll('input[type="text"]'));
+
+                const dayData = {
+                    day: day,
+                    slots: {
+                        slot1: { course: slots[0]?.value || " " },
+                        slot2: { course: slots[1]?.value || " " },
+                        slot3: { course: slots[2]?.value || " " },
+                        slot4: { course: slots[3]?.value || " " },
+                        slot5: { course: slots[4]?.value || " " },
+                        slot6: { course: slots[5]?.value || " " },
+                        slot7: { course: slots[6]?.value || " " },
+                        slot8: { course: slots[7]?.value || " " },
+                    }
+                };
+
+                timetable.push(dayData);
+            });
+
+            const timetableData = {
+                semester: 1,
+                timeTable: timetable
+            };
+
+            try {
+                const response = await fetch('/timeTable', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', 
+                    },
+                    body: JSON.stringify(timetableData), 
+                });
+
+                const data = await response.json();
+                alert(data.message);
+            } catch (error) {
+                console.error('Error submitting timetable:', error);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

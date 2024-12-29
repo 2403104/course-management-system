@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Grades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+
+        }
+
+
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.6);
+            width: 40%;
+            margin: auto;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .student-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .student-id {
+            font-size: 14px;
+            color: #b00a0a;
+        }
+
+        .course-details {
+            font-size: 14px;
+            color: #333;
+            line-height: 2.2;
+            display: flex;
+            gap: 80px;
+            padding-left: 100px;
+        }
+        p{
+            font-size: 15px;
+        }
+        strong{
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('userActivity') %>
+
+    <div class="container">
+        <h1>View Grades</h1>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="student-name">
+                        <strong><%= student.name %></strong>
+                    </div>
+                    <div class="student-id">
+                        Login ID: <%= student.loginId %>
+                    </div>
+                </div>
+                <% student.courses.forEach((course) => { %>
+                    <div class="course-details">
+                        <div>
+                            <p>Course Code: <strong><%= course.courseCode %></strong></p>
+                        </div>
+                        <div>
+                            Grade: <strong><%= course.grade || 'N/A' %></strong>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+
+    </div>
+    
+
+
+</body>
+
+</html>

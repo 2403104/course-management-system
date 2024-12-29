@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Details</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <%- include('header') %>
+    <div class="main-container">
+        <form action="/editDetails"  enctype="multipart/form-data" method="post">
+
+            <div class="header-1">Personal Details</div>
+            <div class="personalDetails">
+                <div class="personalDetails1">
+                    <div class="form-content">
+                        <label for="studentName">Student Name</label>
+                        <input type="text" id="studentName" class="input-container" name="studentName" placeholder="Student Name" required />
+                    </div>
+                    <div class="form-content">
+                        <label for="fatherName">Father's Name </label>
+                        <input type="text" id="fatherName" class="input-container" name="fatherName" placeholder="Father's Name" required />
+                    </div>
+                    <div class="form-content">
+                        <label for="rollNo">Roll No </label>
+                        <input type="number" id="rollNo" class="input-container" name="rollNo" placeholder="Roll No" required />
+                    </div>
+                    <div class="form-content">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <input type="date" id="dateOfBirth" class="input-container" name="dateOfBirth" placeholder=Date of Birth" required />
+                    </div>
+                    <div class="form-content">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="input-container" name="email" placeholder="Email" required />
+                    </div>
+                    <div class="form-content">
+                        <label for="alternateEmail">Alternate Email</label>
+                        <input type="email" id="alternateEmail" class="input-container" name="alternateEmail" placeholder="Alternate Email"  />
+                    </div>
+                    <div class="form-content">
+                        <label for="mobileNo">Mobile No</label>
+                        <input type="number" id="mobileNo" class="input-container" name="mobileNo" placeholder="Mobile No" required />
+                    </div>
+                    <div class="form-content">
+                        <label for="alternateMobileNo">Alternate Mobile No</label>
+                        <input type="number" id="alternateMobileNo" class="input-container" name="alternateMobileNo" placeholder="Alternate Mobile No"  />
+                    </div>
+                    <div class="form-content">
+                        <label for="motherTongue">Mother Tongue</label>
+                        <input type="text" id="motherTongue" class="input-container" name="motherTongue" placeholder="Mother Tongue" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="bloodGroup">Blood Group</label>
+                        <input type="text" id="bloodGroup" class="input-container" name="bloodGroup" placeholder="Blood Group" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="abcId">ABC ID</label>
+                        <input type="text" id="abcId" class="input-container" name="abcId" placeholder="ABC ID" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="gender">Gender</label>
+                        <input type="text" id="gender" class="input-container" name="gender" placeholder="Gender" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="isPhysicallyChallenged">Is Physically Challenged</label>
+                        <input type="text" id="isPhysicallyChallenged" class="input-container" name="isPhysicallyChallenged" placeholder="Yes/No" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="phDescription">PH Description</label>
+                        <input type="text" id="phDescription" class="input-container" name="phDescription" placeholder="PH Description" />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="nationality">Nationality</label>
+                        <input type="text" id="nationality" class="input-container" name="nationality" placeholder="Nationality" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="religion">Religion</label>
+                        <input type="text" id="religion" class="input-container" name="religion" placeholder="Religion" required />
+                    </div>
+                </div>
+                
+                <div class="personalDetails2">
+                    <img src="/user.png" style="width: 170px; height: 170px; background-color: white; margin-left: 200px; margin-bottom: 40px; border-radius: 50%;" id="base" alt="Profile Picture">
+                    <input type="file" id="profileLabel" name="profilePic" accept="image/jpeg, image/png, image/jpg"  required><br><br>
+                    <div class="form-content">
+                        <label for="maritalStatus">Marital Status</label>
+                        <input type="text" id="maritalStatus" class="input-container" name="maritalStatus" placeholder="Marital Status" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="guardianName">Guardian Name</label>
+                        <input type="text" id="guardianName" class="input-container" name="guardianName" placeholder="Guardian Name" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="relationWithGuardian">Relation With Guardian</label>
+                        <input type="text" id="relationWithGuardian" class="input-container" name="relationWithGuardian" placeholder="Relation With Guardian" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="guardianMobileNo">Guardian Mobile No</label>
+                        <input type="number" id="guardianMobileNo" class="input-container" name="guardianMobileNo" placeholder="Guardian Mobile No" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="emergencyContactPersonName">Emergency Contact Person Name</label>
+                        <input type="text" id="emergencyContactPersonName" class="input-container" name="emergencyContactPersonName" placeholder="Emergency Contact Person Name" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="relationWithEmergencyContactPerson">Relation With Emergency Contact Person</label>
+                        <input type="text" id="relationWithEmergencyContactPerson" class="input-container" name="relationWithEmergencyContactPerson" placeholder="Relation With Emergency Contact Person" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="emergencyContactPersonNumber">Emergency Contact Person Contact</label>
+                        <input type="number" id="emergencyContactPersonNumber" class="input-container" name="emergencyContactPersonNumber" placeholder="Emergency Contact Person Contact" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="incomePerAnnum">Income Per Annum</label>
+                        <input type="number" id="incomePerAnnum" class="input-container" name="incomePerAnnum" placeholder="Income Per Annum" required />
+                    </div> 
+                </div>         
+            </div>
+            <div class="header-1">Address Details Details</div>
+            <div class="addressDetail">
+                <div class="address1">
+                    <div class="form-content">
+                        <label for="addressType">Address Type</label>
+                        <input type="text" id="addressType" class="input-container" name="addressType" placeholder="Address Type (e.g., Permanent/Current)" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="country">Country</label>
+                        <input type="text" id="country" class="input-container" name="country" placeholder="Country" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="state">State</label>
+                        <input type="text" id="state" class="input-container" name="state" placeholder="State" required />
+                    </div>
+                </div>
+                <div class="address2">
+                    <div class="form-content">
+                        <label for="fromDate">From (Date)</label>
+                        <input type="date" id="fromDate" value="2025-01-01" class="input-container" name="fromDate" readonly />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="zipCode">Zip Code</label>
+                        <input type="number" id="zipCode" class="input-container" name="zipCode" placeholder="Zip Code" required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="address">Address</label>
+                        <textarea id="address" class="input-container" name="address" placeholder="Enter Full Address" rows="3" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="header-1">Student Degree Details</div>
+            <div class="degreeDetails">
+
+                <div class="degreeDetails1">
+                    <div class="form-content">
+                        <label for="studentBranch">Branch</label>
+                        <input type="text" id="studentBranch" class="input-container" name="Branch" 
+                               required />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="branchFromDate">Branch From Date</label>
+                        <input type="date" id="branchFromDate" class="input-container" name="branchFromDate" 
+                               value="2024-07-31" readonly />
+                    </div>
+                </div>
+                <div class="degreeDetails2">
+                    <div class="form-content">
+                        <label for="studentType">Student Type</label>
+                        <input type="text" id="studentType" class="input-container" name="studentType" 
+                               value="Regular: B.Tech" readonly />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="sponsoredOrgName">Sponsored Organization Name</label>
+                        <input type="text" id="sponsoredOrgName" class="input-container" name="sponsoredOrgName" 
+                               value="" readonly />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="fundingSource">Funding Source</label>
+                        <input type="text" id="fundingSource" class="input-container" name="fundingSource" 
+                               value="" readonly />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="projectName">Project Name</label>
+                        <input type="text" id="projectName" class="input-container" name="projectName" 
+                               value="" readonly />
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-1">Degree Details</div>
+
+            <div class="degree">
+                <div class="degree1">
+                    <div class="form-content">
+                        <label for="degreeName">Degree Name</label>
+                        <input type="text" id="degreeName" class="input-container" name="degreeName" 
+                               value="B.Tech Computer Science and Engineering" readonly />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="curriculumName">Curriculum Name</label>
+                        <input type="text" id="curriculumName" class="input-container" name="curriculumName" 
+                               value="August 2016" readonly />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="batchName">Batch Name</label>
+                        <input type="text" id="batchName" class="input-container" name="batchName" 
+                               value="AUG 2024" readonly />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="degreeStatus">Degree Status</label>
+                        <input type="text" id="degreeStatus" class="input-container" name="degreeStatus" 
+                               value="Open" readonly />
+                    </div>
+                </div>
+                <div class="degree2">
+                    <div class="form-content">
+                        <label for="degreeFromDate">From Date</label>
+                        <input type="date" id="degreeFromDate" class="input-container" name="degreeFromDate" 
+                               value="2025-01-01" readonly />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="degreeToDate">To Date</label>
+                        <input type="date" id="degreeToDate" class="input-container" name="degreeToDate" 
+                               value="" readonly />
+                    </div>
+                    
+                    <div class="form-content">
+                        <label for="remarks">Remarks</label>
+                        <textarea id="remarks" class="input-container" name="remarks" rows="2" readonly>-</textarea>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+    <script>
+        let profilePic=document.querySelector('#base');
+        let inputFile=document.querySelector('#profileLabel');
+        inputFile.onchange=function(){
+        profilePic.src=URL.createObjectURL(inputFile.files[0]);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Approval Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            
+        }
+
+        
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+            width: 70%;
+            margin: auto;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .student-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .student-id {
+            font-size: 14px;
+            color: #b00a0a;
+        }
+
+        .course-details {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            color: #fff;
+        }
+
+        .button-accept {
+            background-color: #28a745;
+        }
+
+        .button-accept:hover {
+            background-color: #218838;
+        }
+
+        .button-reject {
+            background-color: #dc3545;
+        }
+
+        .button-reject:hover {
+            background-color: #c82333;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #505050;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <%-include('facultyActivity')%>
+
+    <div class="container">
+        <h1>Course Add Approval Portal</h1>
+        <% coursesToAdd.forEach((course)=>{%>
+            <div class="card">
+                <div class="card-header">
+                    <div class="student-name">
+                        <%=course.studentName %>
+                    </div>
+                    <div class="student-id">Login ID : <%=course.loginId %>
+                    </div>
+                </div>
+                <div class="course-details">
+                    <strong>Course Requested:</strong>
+                    <%=course.courseCode%> - <%=course.offeringDepartment %><br>
+                            <strong>Reason:</strong>
+                            <%=course.reason %><br>
+                                <strong>Department:</strong>
+                                <%=course.department %><br>
+                                    <strong>Status:</strong>
+                                    <span id="status-<%=course.loginId%>">
+                                        <%=course.status %>
+                                    </span>
+                </div>
+                <div class="button-group">
+                    <button class="button button-accept"
+                        onclick="handleApproval('Accepted','<%=course.loginId%>','<%=JSON.stringify(course) %>')">Accept</button>
+                    <button class="button button-reject"
+                        onclick="handleApproval('Rejected','<%=course.loginId%>','<%=JSON.stringify(course) %>')">Reject</button>
+                </div>
+            </div>
+            <%})%>
+
+    </div>
+
+    <div class="footer">
+        <p>Course Approval System &copy; 2024</p>
+    </div>
+
+    <script>
+        async function handleApproval(action, loginId, courseData) {
+            if (action === 'Accepted') {
+                try {
+                    const course = JSON.parse(courseData);
+                    const response = await fetch('/add-course', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            action,
+                            loginId,
+                            course,
+                        }),
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        document.getElementById(`status-${loginId}`).innerText=action;
+                        document.getElementById(`status-${loginId}`).style.color = action === 'Accepted' ? 'green' : 'red';
+                    } else {
+                        alert(`Failed to add course: ${result.message}`);
+                        console.error('Error:', result);
+                    }
+                } catch (error) {
+                    alert('An error occurred while adding the course.');
+                    console.error('Error:', error);
+                }
+            } else if (action === 'Rejected') {
+                try {
+                    const course = JSON.parse(courseData);
+                    const response = await fetch('/add-course', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            action,
+                            loginId,
+                            course,
+                        }),
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        document.getElementById(`status-${loginId}`).innerText=action;
+                        document.getElementById(`status-${loginId}`).style.color = action === 'Accepted' ? 'green' : 'red';
+                    } else {
+                        alert(`Failed to add course: ${result.message}`);
+                        console.error('Error:', result);
+                    }
+                } catch (error) {
+                    alert('An error occurred while adding the course.');
+                    console.error('Error:', error);
+                }
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

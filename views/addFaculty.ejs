@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Faculty</title>
+    <link rel="stylesheet" href="./css/style.css">
+    
+</head>
+<body>
+    <%-include('adminActivity')%>
+        <div  class="container-1"  >
+        <h1 class="h-1">Add Faculty</h1>
+        <div class="form-container">
+            <form action="/addFaculty" method="post" id="faculty-form">
+                <div class="form-content">
+                    <label for="facultyId">Faculty ID</label>
+                    <input type="text" id="facultyId" class="input-container" name="facultyId" placeholder="Faculty ID" required />
+                </div>
+                <div class="form-content">
+                    <label for="facultyName">Faculty Name</label>
+                    <input type="text" id="facultyName" class="input-container" name="facultyName" placeholder="Faculty Name" required />
+                </div>
+                <div class="form-content">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="input-container" name="email" placeholder="Email" required />
+                </div>
+                <div class="form-content">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="input-container" name="password" placeholder="Password" required />
+                </div>
+                <div class="form-content">
+                    <label for="course">Course</label>
+                    <input type="text" id="course" class="input-container" name="course" placeholder="Course" required />
+                </div>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

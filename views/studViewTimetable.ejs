@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(to right, #f0f0f0, #ffffff);
+        }
+
+        h1 {
+            margin: 20px 0;
+            color: #1565C0;
+        }
+
+        .timetable-container {
+            margin: 20px auto;
+            overflow-x: auto;
+            border-collapse: collapse;
+            width: 95%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-size: 16px;
+        }
+
+        .day-column {
+            background-color: #f9f9f9;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100px;
+            padding: 4px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            background: #e9e9e9;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <%- include('header') %>
+    <h1>View Timetable</h1>
+    <div class="timetable-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="day-column">Day/Time</th>
+                    <th class="time-header">9:00 - 9:45</th>
+                    <th class="time-header">10:00 - 10:45</th>
+                    <th class="time-header">11:00 - 11:45</th>
+                    <th class="time-header">1:00 - 1:45</th>
+                    <th class="time-header">2:00 - 2:45</th>
+                    <th class="time-header">3:00 - 3:45</th>
+                    <th class="time-header">4:00 - 4:45</th>
+                    <th class="time-header">5:00 - 5:45</th>
+                </tr>
+            </thead>
+            <tbody id="timetable-body">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function decodeHtml(html) {
+            var doc = new DOMParser().parseFromString(html, "text/html");
+            return doc.documentElement.textContent;
+        }
+
+        const timetableDataEncoded = "<%= timetable %>";
+        const timetableData = decodeHtml(timetableDataEncoded);
+
+        const parsedTimetableData = JSON.parse(timetableData);
+
+        const timetableBody = document.getElementById("timetable-body");
+
+        parsedTimetableData.forEach(dayData => {
+            const dayRow = document.createElement("tr");
+            dayRow.setAttribute("data-day", dayData.day);
+
+            const dayCell = document.createElement("td");
+            dayCell.classList.add("day-column");
+            dayCell.textContent = dayData.day;
+            dayRow.appendChild(dayCell);
+
+            for (let i = 1; i <= 8; i++) {
+                const slotCell = document.createElement("td");
+                const inputField = document.createElement("input");
+
+                const slotData = dayData.slots[`slot${i}`];
+                const course = slotData ? slotData.course : " ";
+
+                inputField.type = "text";
+                inputField.value = course;
+                inputField.setAttribute("readonly", true); 
+                slotCell.appendChild(inputField);
+
+                dayRow.appendChild(slotCell);
+            }
+
+            timetableBody.appendChild(dayRow);
+        });
+    </script>
+</body>
+
+</html>
