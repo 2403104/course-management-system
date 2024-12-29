@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Stack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, aqua, white);
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            font-weight: bold;
+            color: #005f73;
+        }
+
+        .section {
+            background: linear-gradient(to bottom, aqua, white);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            width: 80%;
+            margin: 20px auto;
+        }
+        .heading{
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+             background-color: blue;
+            -webkit-background-clip: text;
+            font-size: 80px;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3),
+                4px 4px 6px rgba(0, 0, 0, 0.2),
+                6px 6px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            background-color: red;
+            -webkit-background-clip: text;
+            font-size: 55px;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3),
+                4px 4px 6px rgba(0, 0, 0, 0.2),
+                6px 6px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content {
+            font-size: 1.5em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .content strong {
+            color: #00796b;
+        }
+
+        .feature {
+            margin: 15px 0;
+            color: rgb(208, 0, 255);
+        }
+
+        .role {
+            font-size: 1.7em;
+            margin: 15px 0;
+        }
+
+        .features-list div {
+            margin-bottom: 10px;
+            font-size: 1.6em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="techStack">
+        <h1 class="heading" style="color: rgb(255, 5, 1);">Course Management System</h1>
+        <h1 class="heading">Tech Stack</h1>
+
+        <div class="section">
+            <h2 class="section-title">1. Frontend</h2>
+            <div class="content">
+                <div class="feature"><strong>HTML</strong>: Used to structure content on the web, including text,
+                    images, links, etc.</div>
+                <div class="feature"><strong>CSS</strong>: Used to define the presentation, layout, and style of HTML
+                    elements.</div>
+                <div class="feature"><strong>JavaScript</strong>: Used to add dynamic content, manipulate HTML elements,
+                    handle events, and interact with APIs.</div>
+                <div class="feature"><strong>Embedded JavaScript</strong>: Used to generate dynamic HTML pages by
+                    embedding JavaScript code within HTML templates.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">2. Backend</h2>
+            <div class="content">
+                <div class="feature"><strong>Node.js</strong>: For building scalable, server-side applications.</div>
+                <div class="feature"><strong>Express.js</strong>: Provides a set of tools and middleware for routing,
+                    handling requests, and managing server configurations.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">3. Database</h2>
+            <div class="content">
+                <div class="feature"><strong>MongoDB</strong>: Used for storing data of faculty, students, admins,
+                    courses, scholarships, etc.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">4. Middleware</h2>
+            <div class="content">
+                <div class="feature"><strong>Multer</strong>: Used for handling multipart/form-data in Node.js, helpful
+                    in uploading files or images.</div>
+                <div class="feature"><strong>Express Session</strong>: For managing session data on the server side
+                    (while logging in).</div>
+                <div class="feature"><strong>Bcrypt</strong>: For hashing passwords securely (to protect users'
+                    passwords).</div>
+            </div>
+        </div>
+
+        <h1 class="heading">Users</h1>
+        <div class="section">
+            <div class="content features-list">
+                <div class="feature">Admin</div>
+                <div class="feature">Faculty</div>
+                <div class="feature">Student</div>
+            </div>
+        </div>
+
+        <h1 class="heading">Roles</h1>
+        <div class="section">
+            <h2 class="role">1. Admin Role</h2>
+            <div class="features-list">
+                <div class="feature">Register Student</div>
+                <div class="feature">Register Faculty</div>
+                <div class="feature">Add Courses</div>
+                <div class="feature">Approve Applied Scholarships</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="role">2. Faculty Role</h2>
+            <div class="features-list">
+                <div class="feature">Update Grades</div>
+                <div class="feature">Approve Registered Courses</div>
+                <div class="feature">Approve Course Add</div>
+                <div class="feature">Approve Course Drop</div>
+                <div class="feature">View Feedback Submitted</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="role">3. Student Role</h2>
+            <div class="features-list">
+                <div class="feature">Edit Details</div>
+                <div class="feature">Register Course</div>
+                <div class="feature">Add Course</div>
+                <div class="feature">Drop Course</div>
+                <div class="feature">Submit Course Feedback</div>
+                <div class="feature">View Grades</div>
+                <div class="feature">Apply Scholarship</div>
+            </div>
+        </div>
+
+        <h1 class="heading">Features</h1>
+        <div class="section">
+            <h2 class="section-title">General Features</h2>
+            <div class="content">
+                <div class="feature">Login and Logout features for all users.</div>
+                <div class="feature">Logged-in user ID shown on each page.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Features for Admin</h2>
+            <div class="content">
+                <div class="feature">Can add students and faculty.</div>
+                <div class="feature">Can add Core and Elective courses for students.</div>
+                <div class="feature">Can approve all applied scholarships (Will send remarks and status).</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Features for Student</h2>
+            <div class="content">
+                <div class="feature">Can edit and view details.</div>
+                <div class="feature">Can register for courses and view registration history.</div>
+                <div class="feature">Can add and drop courses for the current semester.</div>
+                <div class="feature">Can submit feedback for each course.</div>
+                <div class="feature">Can view grades.</div>
+                <div class="feature">Can apply for scholarships and view status.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Features for Faculty</h2>
+            <div class="content">
+                <div class="feature">Can update grades.</div>
+                <div class="feature">Can approve registered courses (with options of Accepted and Rejected).</div>
+                <div class="feature">Can approve course add/drop (with options of Accepted and Rejected).</div>
+                <div class="feature">Can submit feedback for each course.</div>
+                <div class="feature">Can view submitted feedback.</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
