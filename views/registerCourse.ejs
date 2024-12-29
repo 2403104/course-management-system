@@ -6,114 +6,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Course</title>
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .profile {
+            width: 85vw;
+            height: 35vh;
+            margin:0px 0px 20px 100px;
+            border-radius: 20px;
+            background-color:  transparent;
+            display: flex;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+            align-items: center;
+        }
+
+        .profile .image img {
+            width: 30vh;
+            height: 30vh;
+            padding: 27px;
+            border-radius: 50%;
+            /* box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); */
+        }
+
+        .profile .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 20px;
+        }
+
+        .profile .info h1 {
+            font-size: 40px;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
     <%- include('header') %>
-        <h2 style="background-color: rgb(131, 185, 233); text-align: center;">Register Course</h2>
-
-        <form action="/registerCourse" method="post" id="register-course" class="register-course" style="background-color: transparent; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);">
-            <div class="regular-courseItems">
-                <% coreCourses.forEach((course, index)=> { %>
-                    <div class="regular-courseRow">
-                        <input style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: aqua;" class="regular-courseItem" type="text" id="courseType<%= index %>"
-                            name="courseType<%= index %>" value="<%= course.courseType %>" readonly />
-                        <input style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: aqua;" class="regular-courseItem" type="text" id="courseName<%= index %>"
-                            name="courseName<%= index %>" value="<%= course.courseName %>" readonly />
-                        <input style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: aqua;" class="regular-courseItem" type="text" id="courseCode<%= index %>"
-                            name="courseCode<%= index %>" value="<%= course.courseCode %>" readonly />
-                        <input style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: aqua;" class="regular-courseItem" type="text" id="credits<%= index %>"
-                            name="credits<%= index %>" value="<%= course.credits %>" readonly />
-                        <input style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: aqua;" class="regular-courseItem" type="text" id="facultyAdvisors<%= index %>"
-                            name="facultyAdvisors<%= index %>" value="<%= course.facultyAdvisors %>" readonly />
-                        <input style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: aqua;" class="regular-courseItem" type="text" id="status<%= index %>" name="status<%= index %>"
-                            value="<%= course.status %>" readonly />
-                    </div>
-                    <% }) %>
-
-                        <div class="add-elective-container">
-                            <button style="width: 150px; height: 40px; font-size: 17px; margin-left: 20px; border: none; background-color: rgb(157, 210, 246);" id="addElectiveBtn" type="button">Add Elective </button>
-                        </div>
-                        <div id="additionalElectives"></div>
+    <h2 style="background-color: rgb(131, 185, 233); text-align: center;">Register Course</h2>
+    <div class="profile">
+        <div class="image">
+            <img src="./uploads/<%=image%>" alt="Student Image">
+        </div>
+        <div class="info">
+            <h1 style="font-size: 42px;"><%=name%></h1>
+            <h1 style="font-size: 32px;"><%=branch%></h1>
+        </div>
+    </div>
 
 
+    <form action="/registerCourse" method="post" id="register-course" class="register-course" style="background-color: transparent; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);">
+        <div class="regular-courseItems">
+            <% coreCourses.forEach((course, index)=> { %>
+            <div class="regular-courseRow">
+                <input style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: aqua;" class="regular-courseItem" type="text" id="courseType<%= index %>"
+                    name="courseType<%= index %>" value="<%= course.courseType %>" readonly />
+                <input style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: aqua;" class="regular-courseItem" type="text" id="courseName<%= index %>"
+                    name="courseName<%= index %>" value="<%= course.courseName %>" readonly />
+                <input style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: aqua;" class="regular-courseItem" type="text" id="courseCode<%= index %>"
+                    name="courseCode<%= index %>" value="<%= course.courseCode %>" readonly />
+                <input style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: aqua;" class="regular-courseItem" type="text" id="credits<%= index %>"
+                    name="credits<%= index %>" value="<%= course.credits %>" readonly />
+                <input style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: aqua;" class="regular-courseItem" type="text" id="facultyAdvisors<%= index %>"
+                    name="facultyAdvisors<%= index %>" value="<%= course.facultyAdvisors %>" readonly />
+                <input style="box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); background-color: aqua;" class="regular-courseItem" type="text" id="status<%= index %>" name="status<%= index %>"
+                    value="<%= course.status %>" readonly />
             </div>
+            <% }) %>
 
-            <div class="submit-container">
-                <button type="submit" id="submitCourse" class="submit-btn" style="margin-left: 10px;">Submit Course</button>
+            <div class="add-elective-container">
+                <button style="width: 150px; height: 40px; font-size: 17px; margin-left: 20px; border: none; background-color: rgb(157, 210, 246);" id="addElectiveBtn" type="button">Add Elective </button>
             </div>
-        </form>
+            <div id="additionalElectives"></div>
+        </div>
 
+        <div class="submit-container">
+            <button type="submit" id="submitCourse" class="submit-btn" style="margin-left: 10px;">Submit Course</button>
+        </div>
+    </form>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const electiveCourses = <%- electiveCourses %>; 
-        
-                const addElectiveButton = document.getElementById('addElectiveBtn');
-                const additionalElectivesContainer = document.getElementById('additionalElectives');
-        
-                if (addElectiveButton && additionalElectivesContainer) {
-                    addElectiveButton.addEventListener('click', () => {
-                        const electiveRow = document.createElement('div');
-                        electiveRow.classList.add('regular-courseRow');
-                        
-                        const uniqueId = Date.now(); 
-                        
-                        const electiveSelect = document.createElement('select');
-                        electiveSelect.classList.add('regular-courseItem');
-                        electiveSelect.name = `electiveCourseName[${uniqueId}]`;
-                        electiveSelect.id = `electiveCourseName_${uniqueId}`;
-                        electiveSelect.style.backgroundColor="aqua";
-        
-                        const placeholderOption = document.createElement('option');
-                        placeholderOption.text = 'Select Elective';
-                        electiveSelect.appendChild(placeholderOption);
-        
-                        electiveCourses.forEach(course => {
-                            const option = document.createElement('option');
-                            option.value = course.courseName;
-                            option.text = course.courseName;
-                            option.style.backgroundColor="aqua"
-                            electiveSelect.appendChild(option);
-                        });
-        
-                        electiveRow.appendChild(electiveSelect);
-        
-                        const createInputField = (id, name, placeholder) => {
-                            const input = document.createElement('input');
-                            input.classList.add('regular-courseItem');
-                            input.type = 'text';
-                            input.name = `${name}[${uniqueId}]`;
-                            input.id = `${id}_${uniqueId}`;
-                            input.placeholder = placeholder;
-                            input.readOnly = true; 
-                            input.style.backgroundColor="aqua";
-                            return input;
-                        };
-        
-                        electiveRow.appendChild(createInputField('electiveCourseCode', 'electiveCourseCode', 'Course Code'));
-                        electiveRow.appendChild(createInputField('electiveCredits', 'electiveCredits', 'Credits'));
-                        electiveRow.appendChild(createInputField('electiveFacultyAdvisors', 'electiveFacultyAdvisors', 'Faculty Advisors'));
-                        electiveRow.appendChild(createInputField('electiveStatus', 'electiveStatus', 'Status'));
-        
-                        additionalElectivesContainer.appendChild(electiveRow);
-        
-                        electiveSelect.addEventListener('change', () => {
-                            const selectedCourseName = electiveSelect.value;
-                            const selectedCourse = electiveCourses.find(course => course.courseName === selectedCourseName);
-                            if (selectedCourse) {
-                                document.getElementById(`electiveCourseCode_${uniqueId}`).value = selectedCourse.courseCode;
-                                document.getElementById(`electiveCredits_${uniqueId}`).value = selectedCourse.credits;
-                                document.getElementById(`electiveFacultyAdvisors_${uniqueId}`).value = selectedCourse.facultyAdvisors;
-                                document.getElementById(`electiveStatus_${uniqueId}`).value = selectedCourse.status;
-                            }
-                        });
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const electiveCourses = <%- electiveCourses %>;
+
+            const addElectiveButton = document.getElementById('addElectiveBtn');
+            const additionalElectivesContainer = document.getElementById('additionalElectives');
+
+            if (addElectiveButton && additionalElectivesContainer) {
+                addElectiveButton.addEventListener('click', () => {
+                    const electiveRow = document.createElement('div');
+                    electiveRow.classList.add('regular-courseRow');
+
+                    const uniqueId = Date.now();
+
+                    const electiveSelect = document.createElement('select');
+                    electiveSelect.classList.add('regular-courseItem');
+                    electiveSelect.name = `electiveCourseName[${uniqueId}]`;
+                    electiveSelect.id = `electiveCourseName_${uniqueId}`;
+                    electiveSelect.style.backgroundColor = "aqua";
+
+                    const placeholderOption = document.createElement('option');
+                    placeholderOption.text = 'Select Elective';
+                    electiveSelect.appendChild(placeholderOption);
+
+                    electiveCourses.forEach(course => {
+                        const option = document.createElement('option');
+                        option.value = course.courseName;
+                        option.text = course.courseName;
+                        option.style.backgroundColor = "aqua"
+                        electiveSelect.appendChild(option);
                     });
-                }
-            });
 
-        </script>
-        
+                    electiveRow.appendChild(electiveSelect);
+
+                    const createInputField = (id, name, placeholder) => {
+                        const input = document.createElement('input');
+                        input.classList.add('regular-courseItem');
+                        input.type = 'text';
+                        input.name = `${name}[${uniqueId}]`;
+                        input.id = `${id}_${uniqueId}`;
+                        input.placeholder = placeholder;
+                        input.readOnly = true;
+                        input.style.backgroundColor = "aqua";
+                        return input;
+                    };
+
+                    electiveRow.appendChild(createInputField('electiveCourseCode', 'electiveCourseCode', 'Course Code'));
+                    electiveRow.appendChild(createInputField('electiveCredits', 'electiveCredits', 'Credits'));
+                    electiveRow.appendChild(createInputField('electiveFacultyAdvisors', 'electiveFacultyAdvisors', 'Faculty Advisors'));
+                    electiveRow.appendChild(createInputField('electiveStatus', 'electiveStatus', 'Status'));
+
+                    additionalElectivesContainer.appendChild(electiveRow);
+
+                    electiveSelect.addEventListener('change', () => {
+                        const selectedCourseName = electiveSelect.value;
+                        const selectedCourse = electiveCourses.find(course => course.courseName === selectedCourseName);
+                        if (selectedCourse) {
+                            document.getElementById(`electiveCourseCode_${uniqueId}`).value = selectedCourse.courseCode;
+                            document.getElementById(`electiveCredits_${uniqueId}`).value = selectedCourse.credits;
+                            document.getElementById(`electiveFacultyAdvisors_${uniqueId}`).value = selectedCourse.facultyAdvisors;
+                            document.getElementById(`electiveStatus_${uniqueId}`).value = selectedCourse.status;
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+
 </body>
 
 </html>
