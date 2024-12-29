@@ -958,7 +958,12 @@ app.get('/facultyActivity', (req, res) => {
 
 //TIME TABLE
 app.get('/timeTable',async (req,res)=>{
-    return res.render("timeTable",{name:req.session.admin.name});
+    try{
+        return res.render("timeTable",{name:req.session.admin.name});
+    }catch(err){
+        console.log(err);
+        return res.render('adminLogin');
+    }
 })
 app.post('/timeTable', async (req, res) => {
     try {
@@ -980,14 +985,22 @@ app.post('/timeTable', async (req, res) => {
     }
 });
 app.get('/studViewTimetable',async(req,res)=>{
+ try{
     const timeTable=await Timetable.findOne({semester:1});
-    
+
     return res.render("StudViewTimetable",{name:req.session.user.name,timetable:JSON.stringify(timeTable.timeTable)})
+ }catch(err){
+    return res.render("studentLogin");
+ }
 })
 app.get('/facultyViewTimetable',async(req,res)=>{
+   try{
     const timeTable=await Timetable.findOne({semester:1});
     
     return res.render("facultyViewTimetable",{name:req.session.faculty.name,timetable:JSON.stringify(timeTable.timeTable)})
+   }catch(err){
+    return res.render('facultyLogin');
+   }
 })
 
 const port = 5000;
